@@ -6,6 +6,7 @@ Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/log4j/%{name}-%{version}.tar.gz
+# Source0-md5:	847a4624f29af8c902a6161c3c69b794
 Patch0:		%{name}-unreachable.patch
 URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
