@@ -6,16 +6,19 @@ Release:	3
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/%{name}-%{version}.tar.gz
+Patch0:		%{name}-junit3.8.patch
 URL:		http://jakarta.apache.org/
-Requires:	javamail
+BuildRequires:	jakarta-ant
+BuildRequires:	javamail >= 1.2
+BuildRequires:	jdk >= 1.2
+BuildRequires:	jms
+BuildRequires:	junit >= 3.8
+BuildRequires:	xerces-j
+Requires:	javamail >= 1.2
+Requires:	jdk >= 1.2
 Requires:	jms
 Requires:	junit
 Requires:	xerces-j
-Requires:	jdk
-BuildRequires:	javamail
-BuildRequires:	jms
-BuildRequires:	junit
-BuildRequires:	xerces-j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,9 +45,10 @@ Dokumentacja online do log4j.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
-JAVA_HOME="%{_libdir}/java"
+JAVA_HOME="/usr/lib/java"
 CLASSPATH="$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/mail.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/jms.jar"
