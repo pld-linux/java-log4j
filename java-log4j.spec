@@ -48,7 +48,7 @@ Dokumentacja online do log4j.
 %patch1
 
 %build
-JAVA_HOME="/usr/lib/java"
+JAVA_HOME="%{_libdir}/java"
 CLASSPATH="$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar"
 CLASSPATH="$CLASSPATH:%{_javadir}/mail.jar"
 CLASSPATH="$CLASSPATH:%{_javadir}/jms.jar"
