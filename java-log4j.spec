@@ -2,7 +2,7 @@ Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
 Version:	1.1.3
-Release:	1
+Release:	2
 License:	Apache Software License
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/%{name}-%{version}.tar.gz
@@ -11,7 +11,7 @@ Requires:	javamail
 Requires:	jms
 Requires:	junit
 Requires:	xerces-j
-Requires:	ibm-java-sdk
+Requires:	jdk
 BuildRequires:	javamail
 BuildRequires:	jms
 BuildRequires:	junit
@@ -44,7 +44,7 @@ Dokumentacja online do log4j.
 %setup -q
 
 %build
-JAVA_HOME="%{_libdir}/IBMJava2-13"
+JAVA_HOME="%{_libdir}/java"
 CLASSPATH="$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/mail.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/jms.jar"
