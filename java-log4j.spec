@@ -1,4 +1,4 @@
-Summary: 	log4j - logging for Java
+Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
 Version:	1.1.3
@@ -30,7 +30,7 @@ Przy u¿yciu log4j mo¿na w³±czyæ zapis do logów przy uruchamianiu bez
 modyfikowania binarnej aplikacji.
 
 %package doc
-Summary: 	Online manual for log4j
+Summary:	Online manual for log4j
 Summary(pl):	Dokumentacja online do log4j
 Group:		Development/Languages/Java
 
@@ -44,7 +44,7 @@ Dokumentacja online do log4j.
 %setup -q
 
 %build
-JAVA_HOME="/usr/lib/IBMJava2-13"
+JAVA_HOME="%{_libdir}/IBMJava2-13"
 CLASSPATH="$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/mail.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/jms.jar"
@@ -72,5 +72,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_javalibdir}/*.jar
 
 %files doc
-%defattr(644 root root 755)
+%defattr(644,root,root,755)
 %doc docs/*
