@@ -2,8 +2,8 @@ Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
 Version:	1.1.3
-Release:	2
-License:	Apache Software License
+Release:	3
+License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/%{name}-%{version}.tar.gz
 URL:		http://jakarta.apache.org/
@@ -61,14 +61,12 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javalibdir}
 install dist/lib/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 
-gzip -9nf LICENSE.APL
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc LICENSE.APL
 %{_javalibdir}/*.jar
 
 %files doc
