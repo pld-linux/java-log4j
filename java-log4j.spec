@@ -7,7 +7,7 @@ License:	Apache Software License
 Group:		Development/Languages/Java
 Group(de):	Entwicklung/Sprachen/Java
 Group(pl):	Programowanie/Jêzyki/Java
-Source0:	http://jakarta.apache.org/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/%{name}-%{version}.tar.gz
 URL:		http://jakarta.apache.org/
 Requires:	javamail
 Requires:	jms
