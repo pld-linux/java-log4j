@@ -8,6 +8,7 @@ Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/log4j/%{name}-%{version}.tar.gz
 # Source0-md5:	dfc8cd57a4f2b42177b14f147c9dab3d
 Patch0:		%{name}-unreachable.patch
+Patch1:		%{name}-build.patch
 URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
 BuildRequires:	javamail >= 1.2
@@ -44,6 +45,7 @@ Dokumentacja online do log4j.
 %prep
 %setup -q
 #%patch -p1
+%patch1
 
 %build
 JAVA_HOME="/usr/lib/java"
