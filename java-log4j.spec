@@ -1,12 +1,12 @@
 Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
-Version:	1.2.6
-Release:	2
+Version:	1.2.8
+Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/log4j/%{name}-%{version}.tar.gz
-# Source0-md5:	847a4624f29af8c902a6161c3c69b794
+# Source0-md5:	dfc8cd57a4f2b42177b14f147c9dab3d
 Patch0:		%{name}-unreachable.patch
 URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
@@ -14,12 +14,11 @@ BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
 BuildRequires:	jms
 BuildRequires:	junit >= 3.8
-BuildRequires:	xerces-j
+BuildRequires:	jmx
 Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 Requires:	jms
 Requires:	junit
-Requires:	xerces-j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,7 +45,7 @@ Dokumentacja online do log4j.
 
 %prep
 %setup -q
-%patch -p1
+#%patch -p1
 
 %build
 JAVA_HOME="/usr/lib/java"
@@ -55,7 +54,6 @@ CLASSPATH="$CLASSPATH:%{_javalibdir}/mail.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/jms.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/activation.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/junit.jar"
-CLASSPATH="$CLASSPATH:%{_javalibdir}/classes/xerces.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/jmxri.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/jmxtools.jar"
 export JAVA_HOME CLASSPATH
