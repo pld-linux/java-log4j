@@ -5,8 +5,6 @@ Version:	1.1.3
 Release:	1
 License:	Apache Software License
 Group:		Development/Languages/Java
-Group(de):	Entwicklung/Sprachen/Java
-Group(pl):	Programowanie/Jêzyki/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/%{name}-%{version}.tar.gz
 URL:		http://jakarta.apache.org/
 Requires:	javamail
@@ -35,8 +33,6 @@ modyfikowania binarnej aplikacji.
 Summary: 	Online manual for log4j
 Summary(pl):	Dokumentacja online do log4j
 Group:		Development/Languages/Java
-Group(de):	Entwicklung/Sprachen/Java
-Group(pl):	Programowanie/Jêzyki/Java
 
 %description doc
 Online manual for log4j.
