@@ -5,7 +5,7 @@ Version:	1.2.6
 Release:	1
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/%{name}-%{version}.tar.gz
+Source0:	http://jakarta.apache.org/log4j/%{name}-%{version}.tar.gz
 Patch0:		%{name}-unreachable.patch
 URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
