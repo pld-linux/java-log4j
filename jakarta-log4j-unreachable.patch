@@ -1,0 +1,11 @@
+--- jakarta-log4j-1.2.6/src/java/org/apache/log4j/net/JMSAppender.java.orig	Thu Aug  1 18:34:19 2002
++++ jakarta-log4j-1.2.6/src/java/org/apache/log4j/net/JMSAppender.java	Wed Sep  4 21:04:47 2002
+@@ -329,7 +329,7 @@
+   }
+ 
+   String getURLPkgPrefixes( ) {
+-    return urlPkgPrefixes;;
++    return urlPkgPrefixes;
+   }
+ 
+   public void setURLPkgPrefixes(String urlPkgPrefixes ) {

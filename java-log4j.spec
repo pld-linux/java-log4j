@@ -1,12 +1,12 @@
 Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
-Version:	1.1.3
-Release:	3
+Version:	1.2.6
+Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/%{name}-%{version}.tar.gz
-Patch0:		%{name}-junit3.8.patch
+Patch0:		%{name}-unreachable.patch
 URL:		http://jakarta.apache.org/
 BuildRequires:	jakarta-ant
 BuildRequires:	javamail >= 1.2
@@ -57,8 +57,7 @@ CLASSPATH="$CLASSPATH:%{_javalibdir}/junit.jar"
 CLASSPATH="$CLASSPATH:%{_javalibdir}/classes/xerces.jar"
 export JAVA_HOME CLASSPATH
 
-sh build.sh jar
-sh build.sh javadoc
+ant jar javadoc
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -70,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE.APL
+%doc LICENSE.txt
 %{_javalibdir}/*.jar
 
 %files doc
