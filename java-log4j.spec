@@ -1,15 +1,13 @@
 Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
-Version:	1.2.8
+Version:	1.2.9
 Release:	1
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://jakarta.apache.org/log4j/%{name}-%{version}.tar.gz
-# Source0-md5:	dfc8cd57a4f2b42177b14f147c9dab3d
-Patch0:		%{name}-unreachable.patch
-Patch1:		%{name}-build.patch
-URL:		http://jakarta.apache.org/
+Source0:	http://www.apache.org/dist/logging/log4j/logging-log4j-%{version}.tar.gz
+# Source0-md5:	8c2074c42bf2fb1da72e920689c59ad8
+URL:		http://logging.apache.org/log4j/
 BuildRequires:	jakarta-ant
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
@@ -43,9 +41,7 @@ Online manual for log4j.
 Dokumentacja online do log4j.
 
 %prep
-%setup -q
-#%patch -p1
-%patch1
+%setup -q -n logging-log4j-%{version}
 
 %build
 JAVA_HOME="%{_libdir}/java"
