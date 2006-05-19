@@ -8,7 +8,7 @@ Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/logging-log4j-%{version}.tar.gz
 # Source0-md5:	8c2074c42bf2fb1da72e920689c59ad8
 URL:		http://logging.apache.org/log4j/
-BuildRequires:	jakarta-ant
+BuildRequires:	ant
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
 BuildRequires:	jms
