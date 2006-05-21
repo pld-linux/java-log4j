@@ -3,8 +3,11 @@
 # - do something with jms / jmx requirements;
 #   http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2006-May/017648.html
 #
-# NOTE: javamail is provided by java-gnu-mail
+# NOTE:
+# - javamail is provided by java-gnu-mail
+# - jmx by java-sun-jre
 #
+%include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
@@ -19,8 +22,9 @@ BuildRequires:	ant
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
 #BuildRequires:	jms
+BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8
-#BuildRequires:	jmx
+BuildRequires:	jmx
 Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 #Requires:	jms
@@ -51,15 +55,12 @@ Dokumentacja online do log4j.
 %setup -q -n logging-log4j-%{version}
 
 %build
-JAVA_HOME="%{_libdir}/java"
-CLASSPATH="$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar"
-CLASSPATH="$CLASSPATH:%{_javadir}/mail.jar"
-CLASSPATH="$CLASSPATH:%{_javadir}/jms.jar"
-CLASSPATH="$CLASSPATH:%{_javadir}/activation.jar"
-CLASSPATH="$CLASSPATH:%{_javadir}/junit.jar"
-CLASSPATH="$CLASSPATH:%{_javadir}/jmxri.jar"
-CLASSPATH="$CLASSPATH:%{_javadir}/jmxtools.jar"
-export JAVA_HOME CLASSPATH
+unset JAVA_HOME || :
+export JAVA_HOME="%{java_home}"
+
+# is this required?  doesn't ant do it?
+required_jars="javamail jms activation junit jmxri jmxtools"
+export CLASSPATH="`/usr/bin/build-classpath $required_jars`"
 
 ant jar javadoc
 
