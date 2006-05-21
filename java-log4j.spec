@@ -55,7 +55,6 @@ Dokumentacja online do log4j.
 %setup -q -n logging-log4j-%{version}
 
 %build
-unset JAVA_HOME || :
 export JAVA_HOME="%{java_home}"
 
 # is this required?  doesn't ant do it?
