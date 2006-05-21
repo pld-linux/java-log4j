@@ -1,3 +1,10 @@
+#
+# TODO:
+# - do something with jms / jmx requirements;
+#   http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2006-May/017648.html
+#
+# NOTE: javamail is provided by java-gnu-mail
+#
 Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
@@ -9,12 +16,12 @@ Source0:	http://www.apache.org/dist/logging/log4j/%{version}/logging-log4j-%{ver
 # Source0-md5:	080a645669672dd3fc22f0d8deaf06ac
 URL:		http://logging.apache.org/log4j/
 BuildRequires:	ant
-#BuildRequires:	javamail >= 1.2
+BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
 #BuildRequires:	jms
 BuildRequires:	junit >= 3.8
 #BuildRequires:	jmx
-#Requires:	javamail >= 1.2
+Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 #Requires:	jms
 Requires:	junit
