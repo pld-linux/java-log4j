@@ -22,9 +22,9 @@ BuildRequires:	ant
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
 #BuildRequires:	jms
-BuildRequires:	jpackage-utils
-BuildRequires:	junit >= 3.8
 BuildRequires:	jmx
+BuildRequires:	junit >= 3.8
+BuildRequires:	rpm-javaprov
 Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 #Requires:	jms
