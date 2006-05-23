@@ -1,4 +1,3 @@
-#
 # TODO:
 # - do something with jms / jmx requirements;
 #   http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2006-May/017648.html
@@ -7,7 +6,6 @@
 # - javamail is provided by java-gnu-mail
 # - jmx by java-sun-jre
 #
-%include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		jakarta-log4j
@@ -24,7 +22,7 @@ BuildRequires:	jdk >= 1.2
 #BuildRequires:	jms
 BuildRequires:	jmx
 BuildRequires:	junit >= 3.8
-BuildRequires:	rpm-javaprov
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 #Requires:	jms
