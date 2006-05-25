@@ -1,6 +1,7 @@
 # TODO:
 # - do something with jms / jmx requirements;
 #   http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2006-May/017648.html
+# - jndi (whatever it is) is required for jmx interface
 #
 # NOTE:
 # - javamail is provided by java-gnu-mail
@@ -8,26 +9,29 @@
 #
 Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
-Name:		jakarta-log4j
+Name:		logging-log4j
 Version:	1.2.13
 Release:	1
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://www.apache.org/dist/logging/log4j/%{version}/logging-log4j-%{version}.tar.gz
+Source0: http://www.apache.org/dist/logging/log4j/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	080a645669672dd3fc22f0d8deaf06ac
 URL:		http://logging.apache.org/log4j/
 BuildRequires:	ant
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
 #BuildRequires:	jms
-BuildRequires:	jmx
+#BuildRequires:	jmx
 BuildRequires:	junit >= 3.8
+BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 #Requires:	jms
 Requires:	junit
+Provides:	log4j = %{version}
 BuildArch:	noarch
+ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,23 +53,32 @@ Online manual for log4j.
 %description doc -l pl
 Dokumentacja online do log4j.
 
+%package javadoc
+Summary:	API documentation for log4j
+Summary(pl):	Dokumentacja API log4j
+Group:		Development/Languages/Java
+
+%description javadoc
+API documentation for log4j.
+
+%description javadoc -l pl
+Dokumentacja API log4j.
+
 %prep
 %setup -q -n logging-log4j-%{version}
 
 %build
 export JAVA_HOME="%{java_home}"
-
-# is this required?  doesn't ant do it?
-required_jars="javamail jms activation junit jmxri jmxtools"
-export CLASSPATH="`/usr/bin/build-classpath $required_jars`"
-
+export CLASSPATH="`/usr/bin/build-classpath mailapi activation junit`"
 ant jar javadoc
+ln -s %{_javadocdir}/%{name}-%{version} api
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_javadir}
+install -d $RPM_BUILD_ROOT{%{_javadir},%{_javadocdir}/%{name}-%{version}}
 install dist/lib/log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
-ln -sf log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j.jar
+ln -s log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j.jar
+cp -R docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,4 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files doc
 %defattr(644,root,root,755)
-%doc docs/*
+%doc docs/{css,images,lf5,*.html,*.txt,TODO} api
+
+%files javadoc
+%defattr(644,root,root,755)
+%doc %{_javadocdir}/%{name}-%{version}
