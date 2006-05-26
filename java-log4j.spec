@@ -30,6 +30,7 @@ Requires:	jdk >= 1.2
 #Requires:	jms
 Requires:	junit
 Provides:	log4j = %{version}
+Obsoletes:	jakarta-log4j
 BuildArch:	noarch
 ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -46,6 +47,7 @@ modyfikowania binarnej aplikacji.
 Summary:	Online manual for log4j
 Summary(pl):	Dokumentacja online do log4j
 Group:		Development/Languages/Java
+Obsoletes:	jakarta-log4j-doc
 
 %description doc
 Online manual for log4j.
@@ -57,6 +59,7 @@ Dokumentacja online do log4j.
 Summary:	API documentation for log4j
 Summary(pl):	Dokumentacja API log4j
 Group:		Development/Languages/Java
+Obsoletes:	jakarta-log4j-doc
 
 %description javadoc
 API documentation for log4j.
