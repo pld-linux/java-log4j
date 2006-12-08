@@ -1,0 +1,3 @@
+- changed JAVA_HOME patch to proper directory
+- changed buildrequires to jdk
+- release 2
