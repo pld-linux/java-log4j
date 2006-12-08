@@ -11,20 +11,20 @@ Summary:	log4j - logging for Java
 Summary(pl):	log4j - zapis logów dla Javy
 Name:		logging-log4j
 Version:	1.2.14
-Release:	1
+Release:	2
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	7d8d02888b93e6f8d67b8e5f746196ae
 URL:		http://logging.apache.org/log4j/
 BuildRequires:	ant
-BuildRequires:	javamail >= 1.2
 BuildRequires:	java-activation
+BuildRequires:	javamail >= 1.2
 BuildRequires:	jdk >= 1.2
 #BuildRequires:	jms
 #BuildRequires:	jmx
-BuildRequires:	junit >= 3.8
 BuildRequires:	jpackage-utils
+BuildRequires:	junit >= 3.8
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
@@ -60,6 +60,7 @@ Dokumentacja online do log4j.
 Summary:	API documentation for log4j
 Summary(pl):	Dokumentacja API log4j
 Group:		Development/Languages/Java
+Requires:	jpackage-utils
 Obsoletes:	jakarta-log4j-doc
 
 %description javadoc
@@ -69,12 +70,12 @@ API documentation for log4j.
 Dokumentacja API log4j.
 
 %prep
-%setup -q -n logging-log4j-%{version}
+%setup -q
 
 %build
 export JAVA_HOME="%{java_home}"
-export CLASSPATH="`/usr/bin/build-classpath mailapi activation junit`"
-ant jar javadoc
+export CLASSPATH="`%{_bindir}/build-classpath mailapi activation junit`"
+%ant jar javadoc
 ln -s %{_javadocdir}/%{name}-%{version} api
 
 %install
