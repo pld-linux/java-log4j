@@ -8,7 +8,7 @@
 # - jmx by java-sun-jre
 #
 Summary:	log4j - logging for Java
-Summary(pl.UTF-8):   log4j - zapis logów dla Javy
+Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		logging-log4j
 Version:	1.2.14
 Release:	2
@@ -46,7 +46,7 @@ modyfikowania binarnej aplikacji.
 
 %package doc
 Summary:	Online manual for log4j
-Summary(pl.UTF-8):   Dokumentacja online do log4j
+Summary(pl.UTF-8):	Dokumentacja online do log4j
 Group:		Development/Languages/Java
 Obsoletes:	jakarta-log4j-doc
 
@@ -58,7 +58,7 @@ Dokumentacja online do log4j.
 
 %package javadoc
 Summary:	API documentation for log4j
-Summary(pl.UTF-8):   Dokumentacja API log4j
+Summary(pl.UTF-8):	Dokumentacja API log4j
 Group:		Development/Languages/Java
 Requires:	jpackage-utils
 Obsoletes:	jakarta-log4j-doc
