@@ -8,7 +8,7 @@
 # - jmx by java-sun-jre
 #
 Summary:	log4j - logging for Java
-Summary(pl):	log4j - zapis logów dla Javy
+Summary(pl.UTF-8):   log4j - zapis logÃ³w dla Javy
 Name:		logging-log4j
 Version:	1.2.14
 Release:	2
@@ -40,25 +40,25 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 With log4j it is possible to enable logging at runtime without
 modifying the application binary.
 
-%description -l pl
-Przy u¿yciu log4j mo¿na w³±czyæ zapis do logów przy uruchamianiu bez
+%description -l pl.UTF-8
+Przy uÅ¼yciu log4j moÅ¼na wÅ‚Ä…czyÄ‡ zapis do logÃ³w przy uruchamianiu bez
 modyfikowania binarnej aplikacji.
 
 %package doc
 Summary:	Online manual for log4j
-Summary(pl):	Dokumentacja online do log4j
+Summary(pl.UTF-8):   Dokumentacja online do log4j
 Group:		Development/Languages/Java
 Obsoletes:	jakarta-log4j-doc
 
 %description doc
 Online manual for log4j.
 
-%description doc -l pl
+%description doc -l pl.UTF-8
 Dokumentacja online do log4j.
 
 %package javadoc
 Summary:	API documentation for log4j
-Summary(pl):	Dokumentacja API log4j
+Summary(pl.UTF-8):   Dokumentacja API log4j
 Group:		Development/Languages/Java
 Requires:	jpackage-utils
 Obsoletes:	jakarta-log4j-doc
@@ -66,7 +66,7 @@ Obsoletes:	jakarta-log4j-doc
 %description javadoc
 API documentation for log4j.
 
-%description javadoc -l pl
+%description javadoc -l pl.UTF-8
 Dokumentacja API log4j.
 
 %prep
