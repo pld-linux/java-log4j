@@ -83,7 +83,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_javadir},%{_javadocdir}/%{name}-%{version}}
 install dist/lib/log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
 ln -s log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j.jar
-ln -s log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j12.jar
 cp -R docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
 %clean
