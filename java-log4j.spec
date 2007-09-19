@@ -11,7 +11,7 @@ Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		logging-log4j
 Version:	1.2.14
-Release:	2
+Release:	3
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/%{name}-%{version}.tar.gz
@@ -83,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_javadir},%{_javadocdir}/%{name}-%{version}}
 install dist/lib/log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
 ln -s log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j.jar
+ln -s log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j12.jar
 cp -R docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
 %clean
