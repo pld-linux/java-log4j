@@ -6,12 +6,13 @@
 # NOTE:
 # - javamail is provided by java-gnu-mail
 # - jmx by java-sun-jre
-#
+
+%include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		logging-log4j
 Version:	1.2.14
-Release:	3
+Release:	4
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/%{name}-%{version}.tar.gz
@@ -29,7 +30,7 @@ BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 #Requires:	jms
-Requires:	junit
+#Requires:	junit
 Provides:	log4j = %{version}
 Obsoletes:	jakarta-log4j
 BuildArch:	noarch
@@ -47,7 +48,7 @@ modyfikowania binarnej aplikacji.
 %package doc
 Summary:	Online manual for log4j
 Summary(pl.UTF-8):	Dokumentacja online do log4j
-Group:		Development/Languages/Java
+Group:		Documentation
 Obsoletes:	jakarta-log4j-doc
 
 %description doc
@@ -59,7 +60,7 @@ Dokumentacja online do log4j.
 %package javadoc
 Summary:	API documentation for log4j
 Summary(pl.UTF-8):	Dokumentacja API log4j
-Group:		Development/Languages/Java
+Group:		Documentation
 Requires:	jpackage-utils
 Obsoletes:	jakarta-log4j-doc
 
@@ -73,17 +74,18 @@ Dokumentacja API log4j.
 %setup -q
 
 %build
-export JAVA_HOME="%{java_home}"
-export CLASSPATH="`%{_bindir}/build-classpath mailapi activation junit`"
+required_jars="mailapi activation junit"
+export CLASSPATH=$(build-classpath $required_jars)
 %ant jar javadoc
-ln -s %{_javadocdir}/%{name}-%{version} api
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_javadir},%{_javadocdir}/%{name}-%{version}}
-install dist/lib/log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
+cp -a dist/lib/log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j-%{version}.jar
 ln -s log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j.jar
-cp -R docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+
+cp -a docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -95,8 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files doc
 %defattr(644,root,root,755)
-%doc docs/{css,images,lf5,*.html,*.txt,TODO} api
+%doc docs/{css,images,lf5,*.html,*.txt,TODO}
 
 %files javadoc
 %defattr(644,root,root,755)
-%doc %{_javadocdir}/%{name}-%{version}
+%{_javadocdir}/%{name}-%{version}
+%ghost %{_javadocdir}/%{name}
