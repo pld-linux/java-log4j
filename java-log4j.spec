@@ -11,12 +11,12 @@
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		logging-log4j
-Version:	1.2.14
-Release:	4
+Version:	1.2.15
+Release:	1
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://www.apache.org/dist/logging/log4j/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	7d8d02888b93e6f8d67b8e5f746196ae
+Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-log4j-%{version}.tar.gz
+# Source0-md5:	10f04abe4d68d5a89e8eb167e4e45e1a
 URL:		http://logging.apache.org/log4j/
 BuildRequires:	ant
 BuildRequires:	java-activation
@@ -71,7 +71,7 @@ API documentation for log4j.
 Dokumentacja API log4j.
 
 %prep
-%setup -q
+%setup -q -n apache-log4j-%{version}
 
 %build
 required_jars="mailapi activation junit"
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files doc
 %defattr(644,root,root,755)
-%doc docs/{css,images,lf5,*.html,*.txt,TODO}
+%doc site/{apidocs,css,images,xref,xref-test,*.html}
 
 %files javadoc
 %defattr(644,root,root,755)
