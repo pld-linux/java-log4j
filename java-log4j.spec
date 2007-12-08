@@ -1,19 +1,20 @@
 # TODO:
+# - rename to apache-log4j?
 # - do something with jms / jmx requirements;
 #   http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2006-May/017648.html
 # - jndi (whatever it is) is required for jmx interface
 #
 # NOTE:
 # - javamail is provided by java-gnu-mail
-# - jmx by java-sun-jre
+# - jmx,jndi by java-sun-jre
 
 %include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		logging-log4j
 Version:	1.2.15
-Release:	1
-License:	Apache
+Release:	2
+License:	Apache License 2.0
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-log4j-%{version}.tar.gz
 # Source0-md5:	10f04abe4d68d5a89e8eb167e4e45e1a
@@ -27,14 +28,12 @@ BuildRequires:	jdk >= 1.2
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	javamail >= 1.2
 Requires:	jdk >= 1.2
 #Requires:	jms
-#Requires:	junit
+Suggests:	javamail >= 1.2
 Provides:	log4j = %{version}
 Obsoletes:	jakarta-log4j
 BuildArch:	noarch
-ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -89,6 +88,9 @@ ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post javadoc
+ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
