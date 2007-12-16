@@ -1,13 +1,14 @@
 # TODO:
 # - rename to apache-log4j?
-# - do something with jms / jmx requirements;
-#   http://lists.pld-linux.org/mailman/pipermail/pld-devel-en/2006-May/017648.html
-# - jndi (whatever it is) is required for jmx interface
 #
 # NOTE:
 # - javamail is provided by java-gnu-mail
 # - jmx,jndi by java-sun-jre
-
+#
+# Conditional build:
+%bcond_without	jms	# JMS interface (org.apache.log4j.or.jms)
+%bcond_without	jmx	# JMX interface (org.apache.log4j.jmx)
+#
 %include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
@@ -22,14 +23,18 @@ URL:		http://logging.apache.org/log4j/
 BuildRequires:	ant
 BuildRequires:	java-activation
 BuildRequires:	javamail >= 1.2
+BuildRequires:	jaxp_parser_impl
 BuildRequires:	jdk >= 1.2
-#BuildRequires:	jms
-#BuildRequires:	jmx
+%{?with_jms:BuildRequires:	jms >= 1.1}
+%{?with_jmx:BuildRequires:	jmx >= 1.2.1}
+%{?with_jmx:BuildRequires:	jmx-tools >= 1.2.1}
+%{?with_jmx:BuildRequires:	jndi}
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk >= 1.2
-#Requires:	jms
+%{?with_jms:Suggests:	jms >= 1.1}
+%{?with_jmx:Suggests:	jmx-tools >= 1.2.1}
 Suggests:	javamail >= 1.2
 Provides:	log4j = %{version}
 Obsoletes:	jakarta-log4j
@@ -73,7 +78,7 @@ Dokumentacja API log4j.
 %setup -q -n apache-log4j-%{version}
 
 %build
-required_jars="mailapi activation junit"
+required_jars="mailapi activation junit%{?with_jms: jms}%{?with_jmx: jmx jmxtools}"
 export CLASSPATH=$(build-classpath $required_jars)
 %ant jar javadoc
 
@@ -94,8 +99,9 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE
-%{_javadir}/*.jar
+%doc LICENSE NOTICE
+%{_javadir}/log4j-%{version}.jar
+%{_javadir}/log4j.jar
 
 %files doc
 %defattr(644,root,root,755)
