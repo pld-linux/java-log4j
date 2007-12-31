@@ -6,36 +6,43 @@
 # - jmx,jndi by java-sun-jre
 #
 # Conditional build:
+%bcond_without	dist	# build components which can't be distributed
 %bcond_without	jms	# JMS interface (org.apache.log4j.or.jms)
 %bcond_without	jmx	# JMX interface (org.apache.log4j.jmx)
+
+%if %{with dist}
+%undefine	with_jms
+%undefine	with_jmx
+%endif
 #
 %include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		logging-log4j
 Version:	1.2.15
-Release:	3
+Release:	4
 License:	Apache License 2.0
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-log4j-%{version}.tar.gz
 # Source0-md5:	10f04abe4d68d5a89e8eb167e4e45e1a
 URL:		http://logging.apache.org/log4j/
+Patch0:		apache-log4j-javadoc.patch
 BuildRequires:	ant
 BuildRequires:	java-activation
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jaxp_parser_impl
 BuildRequires:	jdk >= 1.2
 %{?with_jms:BuildRequires:	jms >= 1.1}
-%{?with_jmx:BuildRequires:	jmx >= 1.2.1}
 %{?with_jmx:BuildRequires:	jmx-tools >= 1.2.1}
+%{?with_jmx:BuildRequires:	jmx >= 1.2.1}
 %{?with_jmx:BuildRequires:	jndi}
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk >= 1.2
+Suggests:	javamail >= 1.2
 %{?with_jms:Suggests:	jms >= 1.1}
 %{?with_jmx:Suggests:	jmx-tools >= 1.2.1}
-Suggests:	javamail >= 1.2
 Provides:	log4j = %{version}
 Obsoletes:	jakarta-log4j
 BuildArch:	noarch
@@ -76,10 +83,11 @@ Dokumentacja API log4j.
 
 %prep
 %setup -q -n apache-log4j-%{version}
+%patch0 -p1
 
 %build
-required_jars="mailapi activation junit%{?with_jms: jms}%{?with_jmx: jmx jmxtools}"
-export CLASSPATH=$(build-classpath $required_jars)
+required_jars="mailapi activation junit %{?with_jms:jms} %{?with_jmx:jmx jmxtools}"
+CLASSPATH=$(build-classpath $required_jars); export CLASSPATH
 %ant jar javadoc
 
 %install
@@ -105,7 +113,7 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files doc
 %defattr(644,root,root,755)
-%doc site/{apidocs,css,images,xref,xref-test,*.html}
+%doc site/{css,images,xref,xref-test,*.html}
 
 %files javadoc
 %defattr(644,root,root,755)
