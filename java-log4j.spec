@@ -14,7 +14,7 @@ Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		logging-log4j
 Version:	1.2.15
-Release:	2
+Release:	3
 License:	Apache License 2.0
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-log4j-%{version}.tar.gz
