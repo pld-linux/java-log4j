@@ -7,12 +7,12 @@
 #
 # Conditional build:
 %bcond_without	dist	# build components which can't be distributed
-%bcond_without	jms	# JMS interface (org.apache.log4j.or.jms)
-%bcond_without	jmx	# JMX interface (org.apache.log4j.jmx)
-
-%if %{with dist}
-%undefine	with_jms
-%undefine	with_jmx
+%bcond_with	jms	# JMS interface (org.apache.log4j.or.jms)
+%bcond_with	jmx	# JMX interface (org.apache.log4j.jmx)
+#
+%if %{without dist}
+%define	with_jms	1
+%define	with_jmx	1
 %endif
 #
 %include	/usr/lib/rpm/macros.java
