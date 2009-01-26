@@ -22,7 +22,7 @@ Name:		logging-log4j
 Version:	1.2.15
 Release:	4
 License:	Apache v2.0
-Group:		Development/Languages/Java
+Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-log4j-%{version}.tar.gz
 # Source0-md5:	10f04abe4d68d5a89e8eb167e4e45e1a
 URL:		http://logging.apache.org/log4j/
