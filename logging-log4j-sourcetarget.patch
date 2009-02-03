@@ -1,0 +1,26 @@
+--- apache-log4j-1.2.15/build.xml~	2009-02-03 13:00:14.000000000 +0100
++++ apache-log4j-1.2.15/build.xml	2009-02-03 13:01:23.000000000 +0100
+@@ -97,8 +97,8 @@
+   <!-- Directory for temporary files. -->
+   <property name="dist.tmp" value="${dist.dir}/tmp"/>
+   
+-  <property name="javac.source" value="1.2"/>
+-  <property name="javac.target" value="1.1"/>
++  <property name="javac.source" value="1.3"/>
++  <property name="javac.target" value="1.3"/>
+   
+   <!--  destination for generated documentation on Apache web host  -->
+   <property name="apache.javadoc_dest" value="/www/logging.apache.org/log4j/docs"/>
+--- apache-log4j-1.2.15/tests/build.xml~	2007-08-25 06:09:33.000000000 +0200
++++ apache-log4j-1.2.15/tests/build.xml	2009-02-03 13:55:14.000000000 +0100
+@@ -52,8 +52,8 @@
+   <property name="tests.source.home" value="./src/java/"/>
+   <property name="excludes" value=""/>
+   
+-  <property name="javac.source" value="1.1"/>
+-  <property name="javac.target" value="1.1"/>
++  <property name="javac.source" value="1.3"/>
++  <property name="javac.target" value="1.3"/>
+ 
+   <path id="tests.classpath">
+     <pathelement location="${log4j.jar}"/>
