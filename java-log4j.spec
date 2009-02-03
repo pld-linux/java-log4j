@@ -1,5 +1,7 @@
 # TODO:
 # - rename to apache-log4j?
+# - some tests fail, but it seems to be an error in tests, not in log4j
+# - does it really Requires jdk?
 #
 # NOTE:
 # - javamail is provided by java-gnu-mail
@@ -9,6 +11,7 @@
 %bcond_without	dist	# build components which can't be distributed
 %bcond_with	jms	# JMS interface (org.apache.log4j.or.jms)
 %bcond_with	jmx	# JMX interface (org.apache.log4j.jmx)
+%bcond_with	tests	# tun tests
 #
 %if %{without dist}
 %define	with_jms	1
@@ -27,20 +30,22 @@ Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-log4j-%{vers
 # Source0-md5:	10f04abe4d68d5a89e8eb167e4e45e1a
 URL:		http://logging.apache.org/log4j/
 Patch0:		apache-log4j-javadoc.patch
-BuildRequires:	ant
+Patch1:		%{name}-sourcetarget.patch
+BuildRequires:	ant >= 1.7.1-4
+%{?with_tests:BuildRequires:	ant-junit}
 BuildRequires:	java-activation
+BuildRequires:	java-gcj-compat
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jaxp_parser_impl
-BuildRequires:	jdk >= 1.2
 %{?with_jms:BuildRequires:	jms >= 1.1}
 %{?with_jmx:BuildRequires:	jmx-tools >= 1.2.1}
 %{?with_jmx:BuildRequires:	jmx >= 1.2.1}
 %{?with_jmx:BuildRequires:	jndi}
 BuildRequires:	jpackage-utils
-BuildRequires:	junit >= 3.8
+%{?with_tests:BuildRequires:	junit >= 3.8}
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	jdk >= 1.2
-Suggests:	javamail >= 1.2
+Requires:	jdk >= 1.3
+Suggests:	java-mail >= 1.2
 %{?with_jms:Suggests:	jms >= 1.1}
 %{?with_jmx:Suggests:	jmx-tools >= 1.2.1}
 Provides:	log4j = %{version}
@@ -84,11 +89,19 @@ Dokumentacja API log4j.
 %prep
 %setup -q -n apache-log4j-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
-required_jars="mailapi activation junit %{?with_jms:jms} %{?with_jmx:jmx jmxtools}"
+required_jars="mail activation %{?with_jms:jms} %{?with_jmx:jmx jmxtools}"
 CLASSPATH=$(build-classpath $required_jars); export CLASSPATH
-%ant jar javadoc
+%ant -Dbuild.compiler=gcj -Dbuild.rmic=forking jar javadoc
+
+%if %{with tests}
+cd tests
+CLASSPATH=$(build-classpath junit)
+export CLASSPATH
+%ant -Dbuild.compiler=gcj build runAll
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
