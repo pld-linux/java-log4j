@@ -1,7 +1,6 @@
 # TODO:
 # - rename to apache-log4j?
 # - some tests fail, but it seems to be an error in tests, not in log4j
-# - does it really Requires jdk?
 #
 # NOTE:
 # - javamail is provided by java-gnu-mail
@@ -44,7 +43,6 @@ BuildRequires:	jaxp_parser_impl
 BuildRequires:	jpackage-utils
 %{?with_tests:BuildRequires:	junit >= 3.8}
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	jdk >= 1.3
 Suggests:	java-mail >= 1.2
 %{?with_jms:Suggests:	jms >= 1.1}
 %{?with_jmx:Suggests:	jmx-tools >= 1.2.1}
