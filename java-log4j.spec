@@ -1,5 +1,4 @@
 # TODO:
-# - rename to apache-log4j?
 # - some tests fail, but it seems to be an error in tests, not in log4j
 #
 # NOTE:
@@ -17,19 +16,21 @@
 %define	with_jmx	1
 %endif
 #
+%define		srcname	log4j
+#
 %include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
-Name:		logging-log4j
+Name:		java-%{srcname}
 Version:	1.2.15
 Release:	4
 License:	Apache v2.0
-Group:		Libraries/Java
-Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-log4j-%{version}.tar.gz
+Group:		Development/Languages/Java
+Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-%{srcname}-%{version}.tar.gz
 # Source0-md5:	10f04abe4d68d5a89e8eb167e4e45e1a
 URL:		http://logging.apache.org/log4j/
 Patch0:		apache-log4j-javadoc.patch
-Patch1:		%{name}-sourcetarget.patch
+Patch1:		logging-%{srcname}-sourcetarget.patch
 BuildRequires:	ant >= 1.7.1-4
 %{?with_tests:BuildRequires:	ant-junit}
 BuildRequires:	java-activation
@@ -103,18 +104,18 @@ export CLASSPATH
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_javadir},%{_javadocdir}/%{name}-%{version}}
-cp -a dist/lib/log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j-%{version}.jar
-ln -s log4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/log4j.jar
+install -d $RPM_BUILD_ROOT{%{_javadir},%{_javadocdir}/%{srcname}-%{version}}
+cp -a dist/lib/%{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
+ln -s %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
 
-cp -a docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+cp -a docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{srcname} # ghost symlink
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
+ln -nfs %{srcname}-%{version} %{_javadocdir}/%{srcname}
 
 %files
 %defattr(644,root,root,755)
@@ -128,5 +129,5 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files javadoc
 %defattr(644,root,root,755)
-%{_javadocdir}/%{name}-%{version}
-%ghost %{_javadocdir}/%{name}
+%{_javadocdir}/%{srcname}-%{version}
+%ghost %{_javadocdir}/%{srcname}
