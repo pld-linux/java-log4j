@@ -33,8 +33,7 @@ Patch0:		apache-log4j-javadoc.patch
 Patch1:		logging-%{srcname}-sourcetarget.patch
 BuildRequires:	ant >= 1.7.1-4
 %{?with_tests:BuildRequires:	ant-junit}
-BuildRequires:	java-activation
-BuildRequires:	java-gcj-compat
+BuildRequires:	java-gcj-compat-devel
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jaxp_parser_impl
 %{?with_jms:BuildRequires:	jms >= 1.1}
@@ -49,6 +48,7 @@ Suggests:	java-mail >= 1.2
 %{?with_jmx:Suggests:	jmx-tools >= 1.2.1}
 Provides:	log4j = %{version}
 Obsoletes:	jakarta-log4j
+Obsoletes:	log4j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
