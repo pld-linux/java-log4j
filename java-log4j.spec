@@ -103,7 +103,7 @@ CLASSPATH=$(build-classpath $required_jars); export CLASSPATH
 
 %if %{with tests}
 cd tests
-CLASSPATH=$(build-classpath junit)
+CLASSPATH=$(build-classpath $required_jars junit)
 export CLASSPATH
 %ant build runAll
 %endif
