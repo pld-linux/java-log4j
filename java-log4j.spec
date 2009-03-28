@@ -15,6 +15,11 @@
 %define	with_jms	1
 %define	with_jmx	1
 %endif
+%if "%{pld_release}" == "ti"
+%bcond_without	java_sun	# build with gcj
+%else
+%bcond_with	java_sun	# build with java-sun
+%endif
 #
 %define		srcname	log4j
 #
@@ -23,7 +28,7 @@ Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		java-%{srcname}
 Version:	1.2.15
-Release:	4
+Release:	5
 License:	Apache v2.0
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-%{srcname}-%{version}.tar.gz
@@ -33,7 +38,8 @@ Patch0:		apache-log4j-javadoc.patch
 Patch1:		logging-%{srcname}-sourcetarget.patch
 BuildRequires:	ant >= 1.7.1-4
 %{?with_tests:BuildRequires:	ant-junit}
-BuildRequires:	java-gcj-compat-devel
+%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
+%{?with_java_sun:BuildRequires:	java-sun}
 BuildRequires:	javamail >= 1.2
 BuildRequires:	jaxp_parser_impl
 %{?with_jms:BuildRequires:	jms >= 1.1}
