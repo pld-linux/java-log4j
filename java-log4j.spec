@@ -28,7 +28,7 @@ Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		java-%{srcname}
 Version:	1.2.15
-Release:	6
+Release:	7
 License:	Apache v2.0
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-%{srcname}-%{version}.tar.gz
@@ -53,6 +53,7 @@ Suggests:	java-mail >= 1.2
 %{?with_jms:Suggests:	jms >= 1.1}
 %{?with_jmx:Suggests:	jmx-tools >= 1.2.1}
 Provides:	log4j = %{version}
+Provides:	logging-log4j = %{version}
 Obsoletes:	jakarta-log4j
 Obsoletes:	log4j
 BuildArch:	noarch
@@ -71,6 +72,7 @@ Summary:	Online manual for log4j
 Summary(pl.UTF-8):	Dokumentacja online do log4j
 Group:		Documentation
 Obsoletes:	jakarta-log4j-doc
+Obsoletes:	logging-log4j-doc
 
 %description doc
 Online manual for log4j.
@@ -84,6 +86,7 @@ Summary(pl.UTF-8):	Dokumentacja API log4j
 Group:		Documentation
 Requires:	jpackage-utils
 Obsoletes:	jakarta-log4j-doc
+Obsoletes:	logging-log4j-javadoc
 
 %description javadoc
 API documentation for log4j.
