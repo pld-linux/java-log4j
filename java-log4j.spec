@@ -99,7 +99,6 @@ Dokumentacja API log4j.
 %build
 required_jars="mail activation %{?with_jms:jms} %{?with_jmx:jmx jmxtools}"
 CLASSPATH=$(build-classpath $required_jars); export CLASSPATH
-#%ant -Dbuild.compiler=extJavac -Dbuild.rmic=forking jar javadoc
 %ant jar javadoc
 
 %if %{with tests}
