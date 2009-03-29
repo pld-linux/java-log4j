@@ -6,19 +6,18 @@
 # - jmx,jndi by java-sun-jre
 #
 # Conditional build:
-%bcond_without	dist	# build components which can't be distributed
-%bcond_with	jms	# JMS interface (org.apache.log4j.or.jms)
-%bcond_with	jmx	# JMX interface (org.apache.log4j.jmx)
-%bcond_with	tests	# tun tests
+%bcond_without	dist		# build components which can't be distributed
+%bcond_with	java_sun	# build with java-sun
+%bcond_with	jms		# JMS interface (org.apache.log4j.or.jms)
+%bcond_with	jmx		# JMX interface (org.apache.log4j.jmx)
+%bcond_with	tests		# tun tests
 #
 %if %{without dist}
 %define	with_jms	1
 %define	with_jmx	1
 %endif
 %if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with	java_sun	# build with java-sun
+%define	with_java_sun	1
 %endif
 #
 %define		srcname	log4j
@@ -28,7 +27,7 @@ Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		java-%{srcname}
 Version:	1.2.15
-Release:	7
+Release:	8
 License:	Apache v2.0
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-%{srcname}-%{version}.tar.gz
