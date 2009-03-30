@@ -2,7 +2,6 @@
 # - some tests fail, but it seems to be an error in tests, not in log4j
 #
 # NOTE:
-# - javamail is provided by java-gnu-mail
 # - jmx,jndi by java-sun-jre
 #
 # Conditional build:
@@ -16,6 +15,7 @@
 %define	with_jms	1
 %define	with_jmx	1
 %endif
+
 %if "%{pld_release}" == "ti"
 %define	with_java_sun	1
 %endif
@@ -29,7 +29,7 @@ Name:		java-%{srcname}
 Version:	1.2.15
 Release:	8
 License:	Apache v2.0
-Group:		Development/Languages/Java
+Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-%{srcname}-%{version}.tar.gz
 # Source0-md5:	10f04abe4d68d5a89e8eb167e4e45e1a
 URL:		http://logging.apache.org/log4j/
