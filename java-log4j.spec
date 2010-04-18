@@ -16,10 +16,6 @@
 %define	with_jmx	1
 %endif
 
-%if "%{pld_release}" == "ti"
-%define	with_java_sun	1
-%endif
-#
 %define		srcname	log4j
 #
 %include	/usr/lib/rpm/macros.java
@@ -37,22 +33,20 @@ Patch0:		apache-log4j-javadoc.patch
 Patch1:		logging-%{srcname}-sourcetarget.patch
 BuildRequires:	ant >= 1.7.1-4
 %{?with_tests:BuildRequires:	ant-junit}
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
-%{?with_java_sun:BuildRequires:	java-sun}
-BuildRequires:	javamail >= 1.2
-BuildRequires:	jaxp_parser_impl
+BuildRequires:	java(javamail) >= 1.2
+BuildRequires:	java(jaxp_parser_impl)
+%{?with_jmx:BuildRequires:	java(jmx) >= 1.2.1}
+BuildRequires:	java-sun
 %{?with_jms:BuildRequires:	jms >= 1.1}
 %{?with_jmx:BuildRequires:	jmx-tools >= 1.2.1}
-%{?with_jmx:BuildRequires:	jmx >= 1.2.1}
-%{?with_jmx:BuildRequires:	jndi}
+%{?with_jmx:BuildRequires:	java(jndi)}
 BuildRequires:	jpackage-utils
 %{?with_tests:BuildRequires:	junit >= 3.8}
 BuildRequires:	rpmbuild(macros) >= 1.300
-Suggests:	java-mail >= 1.2
+Suggests:	java(javamail) >= 1.2
 %{?with_jms:Suggests:	jms >= 1.1}
 %{?with_jmx:Suggests:	jmx-tools >= 1.2.1}
 Provides:	log4j = %{version}
-Provides:	logging-log4j = %{version}
 Obsoletes:	jakarta-log4j
 Obsoletes:	log4j
 BuildArch:	noarch
