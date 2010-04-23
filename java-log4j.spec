@@ -36,7 +36,7 @@ BuildRequires:	ant >= 1.7.1-4
 BuildRequires:	java(javamail) >= 1.2
 BuildRequires:	java(jaxp_parser_impl)
 %{?with_jmx:BuildRequires:	java(jmx) >= 1.2.1}
-BuildRequires:	java-sun
+BuildRequires:	jdk
 %{?with_jms:BuildRequires:	jms >= 1.1}
 %{?with_jmx:BuildRequires:	jmx-tools >= 1.2.1}
 %{?with_jmx:BuildRequires:	java(jndi)}
