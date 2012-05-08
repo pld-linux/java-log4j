@@ -10,14 +10,13 @@
 %bcond_with	jms		# JMS interface (org.apache.log4j.or.jms)
 %bcond_with	jmx		# JMX interface (org.apache.log4j.jmx)
 %bcond_with	tests		# tun tests
-#
+
 %if %{without dist}
 %define	with_jms	1
 %define	with_jmx	1
 %endif
 
 %define		srcname	log4j
-#
 %include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
@@ -32,7 +31,7 @@ Patch0:		apache-log4j-javadoc.patch
 Patch1:		logging-%{srcname}-sourcetarget.patch
 Patch2:		%{name}-version.patch
 URL:		http://logging.apache.org/log4j/
-BuildRequires:	ant >= 1.7.1-4
+BuildRequires:	ant >= 1.6.5
 %{?with_tests:BuildRequires:	ant-junit}
 BuildRequires:	java(javamail) >= 1.2
 BuildRequires:	java(jaxp_parser_impl)
