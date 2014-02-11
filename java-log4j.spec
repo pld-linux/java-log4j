@@ -21,15 +21,13 @@
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		java-%{srcname}
-Version:	1.2.16
-Release:	2
+Version:	1.2.17
+Release:	1
 License:	Apache v2.0
 Group:		Libraries/Java
-Source0:	http://www.apache.org/dist/logging/log4j/%{version}/apache-%{srcname}-%{version}.tar.gz
-# Source0-md5:	8e331a930d0b56280a1c66a00621b3a3
+Source0:	http://www.apache.org/dist/logging/log4j/%{version}/%{srcname}-%{version}.tar.gz
+# Source0-md5:	8218714e41ee0c6509dcfeafa2e1f53f
 Patch0:		apache-log4j-javadoc.patch
-Patch1:		logging-%{srcname}-sourcetarget.patch
-Patch2:		%{name}-version.patch
 URL:		http://logging.apache.org/log4j/
 BuildRequires:	ant >= 1.6.5
 %{?with_tests:BuildRequires:	ant-junit}
@@ -89,8 +87,6 @@ Dokumentacja API log4j.
 %prep
 %setup -q -n apache-log4j-%{version}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %{__rm} log4j-%{version}.jar
 
