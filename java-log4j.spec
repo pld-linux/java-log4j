@@ -17,7 +17,6 @@
 %endif
 
 %define		srcname	log4j
-%include	/usr/lib/rpm/macros.java
 Summary:	log4j - logging for Java
 Summary(pl.UTF-8):	log4j - zapis logów dla Javy
 Name:		java-%{srcname}
